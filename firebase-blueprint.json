@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stored user profile information including auth roles",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["DONOR", "RECEIVER", "NGO", "DELIVERY", "ADMIN"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role", "createdAt"]
+    },
+    "Delivery": {
+      "title": "Medicine Delivery",
+      "description": "Information about a medicine delivery from donor to receiver",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["SCHEDULED", "IN_TRANSIT", "DELIVERED", "CANCELLED", "VERIFIED"] },
+        "medicineName": { "type": "string" },
+        "name": { "type": "string" },
+        "quantity": { "type": "integer" },
+        "donorId": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "deliveryPartnerId": { "type": "string" },
+        "scheduledDate": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["status", "donorId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/deliveries/{deliveryId}": {
+      "schema": "Delivery",
+      "description": "Delivery records"
+    }
+  }
+}

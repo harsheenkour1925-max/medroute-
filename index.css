@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Libre Baskerville", serif;
+}
+
+:root {
+  --background: #f8f9f5;
+  --foreground: #2c3e2e;
+  --primary: #5b7b62;
+  --secondary: #7b9a82;
+  --accent: #a3b18a;
+  --muted: #e6e9e1;
+}
+
+body { 
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: auto;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif) !important;
+    letter-spacing: -0.02em !important;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 30px -10px rgba(91, 123, 98, 0.1);
+}
+
+#map { height: 100%; width: 100%; border-radius: 32px; }
+
+@keyframes scan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.scanner-line {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, var(--primary), transparent);
+  box-shadow: 0 0 25px var(--primary);
+  animation: scan 2.5s ease-in-out infinite;
+  z-index: 20;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Leaflet Tooltip Styling */
+.leaflet-tooltip.route-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
+  display: none !important;
+}
+
+.light-popup .leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: var(--foreground) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.light-popup .leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}

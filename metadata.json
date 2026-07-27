@@ -1,0 +1,12 @@
+{
+  "name": "MedRoute - Smart Medicine Redistribution Network",
+  "description": "A comprehensive platform to reduce pharmaceutical waste by redistributing unused medicines to those in need, featuring AI-powered verification, role-based dashboards, and real-time tracking.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
