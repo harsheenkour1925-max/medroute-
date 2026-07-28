@@ -92,6 +92,48 @@ medroute/
 - **Geospatial allocation**: 50 km bounding-box pre-filter → rank by real driving time via Google Maps Distance Matrix API → allocate nearest match + nearest NGO for delivery. Cuts DB reads/API calls by ~87%, ~1.34s average allocation time.
 - **Future scope**: exploring Duan et al. (2025) deterministic O(m·log^(2/3) n) shortest-path algorithm as a potential replacement for Dijkstra's O(m + n log n) for large-scale routing.
 
+## Local Setup
+ 
+```bash
+# 1. Clone the repo
+git clone https://github.com/<your-org>/medroute.git
+cd medroute
+ 
+# 2. Install frontend dependencies
+cd frontend
+npm install
+ 
+# 3. Install backend dependencies
+cd ../backend
+npm install
+ 
+# 4. Set up environment variables
+cp .env.example .env
+# then fill in GROQ_API_KEY, GEMINI_API_KEY, SARVAM_API,
+# YOLOV8_MODEL_WEIGHTS_URL, VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+ 
+# 5. Download YOLOv8 pill-detection weights
+# (linked via YOLOV8_MODEL_WEIGHTS_URL in .env — place the downloaded
+# best.pt inside backend/ml/weights/)
+ 
+# 6. Run backend (from /backend)
+npm run dev
+ 
+# 7. Run frontend (from /frontend, in a separate terminal)
+npm run dev
+```
+ 
+The frontend runs on `http://localhost:5173` (Vite default) and proxies API calls to the backend on `http://localhost:5000` — adjust ports in `.env` / `vite.config.ts` if needed.
+ 
+### Testing the Detection Pipeline
+ 
+To try out the donor-side verification flow (YOLOv8 pill detection + EasyOCR extraction) without needing a real donor, use sample **blister pack images** — front-side (pills visible, for detection/counting) and back-side (text/foil, for OCR extraction of name, batch, expiry).
+ 
+- Sample/test blister pack images are included in `ml/test-samples/` (attached in this repo) — use these to sanity-check the pipeline after setup.
+- For your own test images: capture one **front image** (unobstructed view of the pills) and one **back image** (medicine name, batch number, expiry date clearly visible) per pack, matching the same two-image flow the Donor Module expects.
+- Recommended: test with a mix of sealed and opened packs, and a few rotated/low-light shots, since that's what the OCR preprocessing pipeline (grayscale → denoise → Otsu threshold → deskew) is tuned to handle.
+
+
 ## Vision
 
 Every verified medicine redistributed brings us one step closer to a healthier, more sustainable, and equitable India.
