@@ -129,7 +129,7 @@ The frontend runs on `http://localhost:5173` (Vite default) and proxies API call
  
 To try out the donor-side verification flow (YOLOv8 pill detection + EasyOCR extraction) without needing a real donor, use sample **blister pack images** — front-side (pills visible, for detection/counting) and back-side (text/foil, for OCR extraction of name, batch, expiry).
  
-- Sample/test blister pack images are included in `ml/test-samples/` (attached in this repo) — use these to sanity-check the pipeline after setup.
+- Sample/test blister pack images are included in `/Resources_medroute` (attached in this repo) — use these to sanity-check the pipeline after setup.
 - For your own test images: capture one **front image** (unobstructed view of the pills) and one **back image** (medicine name, batch number, expiry date clearly visible) per pack, matching the same two-image flow the Donor Module expects.
 - Recommended: test with a mix of sealed and opened packs, and a few rotated/low-light shots, since that's what the OCR preprocessing pipeline (grayscale → denoise → Otsu threshold → deskew) is tuned to handle.
 
