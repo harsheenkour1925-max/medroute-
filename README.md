@@ -55,7 +55,7 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
-> ⚠️ Never commit real keys. Keep `.env` out of version control (`.gitignore`) and rotate any keys that were ever pasted into chat, docs, or public repos.
+>  Never commit real keys. Keep `.env` out of version control (`.gitignore`) 
 
 ## Suggested Repo Structure
 
